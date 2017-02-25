@@ -76,11 +76,8 @@ namespace Outfitter
                             case 3:
                                 priorityAdjust = 0.25f;
                                 break;
-                            case 4:
-                                priorityAdjust = 0.125f;
-                                break;
                             default:
-                                priorityAdjust = 0.5f;
+                                priorityAdjust = 0.125f;
                                 break;
                         }
 
