@@ -21,8 +21,8 @@ namespace OutfitterInfused
         {
             _game = game;
             Log.Message("Outfitter with Infused Initialized");
-            ApparelStatCache.ApparelScoreRawPawnStatsHandlers += ApparelScoreRaw_PawnStatsHandlers;
-            ApparelStatCache.ApparelScoreRawFillInfusedStat   += ApparelScoreRaw_FillInfusedStat;
+            ApparelStatCache.ApparelScoreRaw_PawnStatsHandlers += ApparelScoreRaw_PawnStatsHandlers;
+            ApparelStatCache.ApparelScoreRaw_FillInfusedStat   += ApparelScoreRaw_FillInfusedStat;
             ApparelStatCache.IgnoredWtHandlers                += Ignored_WTHandlers;
         }
 

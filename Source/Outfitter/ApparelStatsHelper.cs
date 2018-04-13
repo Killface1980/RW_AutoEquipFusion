@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Outfitter.Enums;
+using Outfitter.Stats;
 using Outfitter.WorkType;
 using RimWorld;
 using UnityEngine;

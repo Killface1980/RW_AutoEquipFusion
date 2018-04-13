@@ -10,7 +10,7 @@ using Outfitter.Enums;
 using RimWorld;
 using Verse;
 
-namespace Outfitter
+namespace Outfitter.Stats
 {
     public class StatPriority
     {

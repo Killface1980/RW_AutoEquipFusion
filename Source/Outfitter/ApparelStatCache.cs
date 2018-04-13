@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
 using Outfitter.Enums;
+using Outfitter.Stats;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -50,20 +51,20 @@ namespace Outfitter
             this._lastWeightUpdate = -5000;
         }
 
-        public delegate void ApparelScoreRawIgnored_WtHandlers(ref List<StatDef> statDef);
+        public delegate void ApparelScoreRaw_Ignored_WtHandlers(ref List<StatDef> statDef);
 
-        public delegate void ApparelScoreRawInfusionHandlers(
+        public delegate void ApparelScoreRaw_InfusionHandlers(
             [NotNull] Apparel apparel,
             [NotNull] StatDef parentStat,
             ref HashSet<StatDef> infusedOffsets);
 
-        public delegate void ApparelScoreRawStatsHandler(Apparel apparel, StatDef statDef, out float num);
+        public delegate void ApparelScoreRaw_StatsHandler(Apparel apparel, StatDef statDef, out float num);
 
-        public static event ApparelScoreRawInfusionHandlers ApparelScoreRawFillInfusedStat;
+        public static event ApparelScoreRaw_InfusionHandlers ApparelScoreRaw_FillInfusedStat;
 
-        public static event ApparelScoreRawStatsHandler ApparelScoreRawPawnStatsHandlers;
+        public static event ApparelScoreRaw_StatsHandler ApparelScoreRaw_PawnStatsHandlers;
 
-        public static event ApparelScoreRawIgnored_WtHandlers IgnoredWtHandlers;
+        public static event ApparelScoreRaw_Ignored_WtHandlers IgnoredWtHandlers;
 
         [NotNull]
         public List<StatPriority> StatCache
@@ -247,7 +248,7 @@ namespace Outfitter
             out float num)
         {
             num = 0f;
-            ApparelScoreRawPawnStatsHandlers?.Invoke(apparel, statDef, out num);
+            ApparelScoreRaw_PawnStatsHandlers?.Invoke(apparel, statDef, out num);
         }
 
 
@@ -685,7 +686,7 @@ namespace Outfitter
             StatDef parentStat,
             ref HashSet<StatDef> infusedOffsets)
         {
-            ApparelScoreRawFillInfusedStat?.Invoke(apparel, parentStat, ref infusedOffsets);
+            ApparelScoreRaw_FillInfusedStat?.Invoke(apparel, parentStat, ref infusedOffsets);
         }
 
         private void GetStatsOfApparel(

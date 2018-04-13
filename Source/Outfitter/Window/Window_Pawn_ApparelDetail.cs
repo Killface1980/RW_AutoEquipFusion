@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Outfitter.Stats;
 using Outfitter.Textures;
 using RimWorld;
 using UnityEngine;
 using Verse;
-using static UnityEngine.GUILayout;
 
-namespace Outfitter
+namespace Outfitter.Window
 {
     public class Window_Pawn_ApparelDetail : Verse.Window
     {
@@ -112,12 +112,12 @@ namespace Outfitter
 
             conRect.height -= 50f;
 
-            BeginArea(conRect);
+            GUILayout.BeginArea(conRect);
 
             // begin main group
-            BeginVertical();
+            GUILayout.BeginVertical();
 
-            Label(this.GetTitle(), this._headline);
+            GUILayout.Label(this.GetTitle(), this._headline);
             Text.Font = GameFont.Small;
 
             // GUI.BeginGroup(contentRect);
@@ -125,9 +125,9 @@ namespace Outfitter
 
             this.DrawLine("Status", labelWidth, "BaseMod", "Strength", "Score", this._fontBold);
 
-            Space(6f);
-            Label(string.Empty, this._whiteLine, Height(1));
-            Space(6f);
+            GUILayout.Space(6f);
+            GUILayout.Label(string.Empty, this._whiteLine, GUILayout.Height(1));
+            GUILayout.Space(6f);
 
             ApparelEntry apparelEntry = conf.GetAllOffsets(this._apparel);
 
@@ -135,7 +135,7 @@ namespace Outfitter
             HashSet<StatDef> statBases = apparelEntry.StatBases;
             HashSet<StatDef> infusedOffsets = apparelEntry.InfusedOffsets;
 
-            this._scrollPosition = BeginScrollView(this._scrollPosition, Width(conRect.width));
+            this._scrollPosition = GUILayout.BeginScrollView(this._scrollPosition, GUILayout.Width(conRect.width));
 
             // relevant apparel stats
 
@@ -254,13 +254,13 @@ namespace Outfitter
             GUI.color = Color.white;
 
             // end upper group
-            EndScrollView();
+            GUILayout.EndScrollView();
 
             // begin lower group
-            FlexibleSpace();
-            Space(6f);
-            Label(string.Empty, this._whiteLine, Height(1));
-            Space(6f);
+            GUILayout.FlexibleSpace();
+            GUILayout.Space(6f);
+            GUILayout.Label(string.Empty, this._whiteLine, GUILayout.Height(1));
+            GUILayout.Space(6f);
             this.DrawLine(string.Empty, labelWidth, "Modifier", string.Empty, "Subtotal");
 
             this.DrawLine("BasicStatusOfApparel".Translate(), labelWidth, "1.00", "+", score.ToString("N2"));
@@ -368,8 +368,8 @@ namespace Outfitter
             Text.Anchor = TextAnchor.UpperLeft;
 
             // end main group
-            EndVertical();
-            EndArea();
+            GUILayout.EndVertical();
+            GUILayout.EndArea();
         }
 
         public override void WindowUpdate()
@@ -398,18 +398,18 @@ namespace Outfitter
         {
             if (style != null)
             {
-                BeginHorizontal(style);
+                GUILayout.BeginHorizontal(style);
             }
             else
             {
-                BeginHorizontal(this._hoverBox);
+                GUILayout.BeginHorizontal(this._hoverBox);
             }
 
-            Label(statDefLabelText, Width(statDefLabelWidth));
-            Label(statDefValueText, Width(BaseValue));
-            Label(multiplierText, Width(BaseValue));
-            Label(finalValueText, Width(BaseValue));
-            EndHorizontal();
+            GUILayout.Label(statDefLabelText, GUILayout.Width(statDefLabelWidth));
+            GUILayout.Label(statDefValueText, GUILayout.Width(BaseValue));
+            GUILayout.Label(multiplierText, GUILayout.Width(BaseValue));
+            GUILayout.Label(finalValueText, GUILayout.Width(BaseValue));
+            GUILayout.EndHorizontal();
 
             // Text.Anchor = TextAnchor.UpperLeft;
             // Widgets.Label(new Rect(itemRect.xMin, itemRect.yMin, statDefLabelWidth, itemRect.height), statDefLabelText);

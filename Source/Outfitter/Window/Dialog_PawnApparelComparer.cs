@@ -132,7 +132,6 @@ namespace Outfitter.Window
                 }
 
                 Pawn equipped = currentAppel.Wearer;
-                Pawn target = null;
 
                 string gainString = this._pawn.outfits.forcedHandler.AllowedToAutomaticallyDrop(currentAppel)
                                         ? gain.ToString("N3")
@@ -146,8 +145,8 @@ namespace Outfitter.Window
                     equipped,
                     equipped?.LabelCap,
                     apparelEquippedWidth,
-                    target,
-                    target?.LabelCap,
+                    null,
+                    null,
                     apparelOwnerWidth,
                     apparelStatCache.ApparelScoreRaw(currentAppel).ToString("N3"),
                     gainString

@@ -1,9 +1,11 @@
-﻿using RimWorld;
+﻿using System.Diagnostics.CodeAnalysis;
+using RimWorld;
 
-namespace Outfitter
+namespace Outfitter.Stats
 {
     // Not covered by vanilla
     [DefOf]
+    [SuppressMessage("ReSharper", "UnassignedField.Global")]
     public static class StatDefOf2
     {
         public static StatDef BrewingSpeed;

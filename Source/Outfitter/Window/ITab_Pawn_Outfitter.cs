@@ -1,17 +1,17 @@
-﻿using JetBrains.Annotations;
-using Outfitter.Enums;
-using Outfitter.Textures;
-using Outfitter.Window;
-using RimWorld;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using JetBrains.Annotations;
+using Outfitter.Enums;
+using Outfitter.Stats;
+using Outfitter.Textures;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
 using Verse.Sound;
 
-namespace Outfitter
+namespace Outfitter.Window
 {
     public class Tab_Pawn_Outfitter : ITab
     {
@@ -594,13 +594,8 @@ namespace Outfitter
             this.TryDrawComfyTemperatureRange(ref cur.y, canvas.width);
         }
 
-        private void DrawThingRowModded(ref float y, float width, Apparel apparel)
+        private void DrawThingRowModded(ref float y, float width, [NotNull] Apparel apparel)
         {
-            if (apparel == null)
-            {
-                this.DrawThingRowVanilla(ref y, width, apparel);
-                return;
-            }
 
             Rect rect = new Rect(0f, y, width, ThingRowHeight);
 
@@ -709,93 +704,43 @@ namespace Outfitter
             y += ThingRowHeight;
         }
 
-        private void DrawThingRowVanilla(ref float y, float width, Thing thing)
-        {
-            Rect rect = new Rect(0f, y, width, 28f);
-            if (Mouse.IsOver(rect))
-            {
-                GUI.color = HighlightColor;
-                GUI.DrawTexture(rect, TexUI.HighlightTex);
-            }
-
-            GUI.color   = ThingLabelColor;
-            Rect rect2A = new Rect(rect.width - 24f, y, 24f, 24f);
-            UIHighlighter.HighlightOpportunity(rect, "InfoCard");
-            TooltipHandler.TipRegion(rect2A, "DefInfoTip".Translate());
-            if (Widgets.ButtonImage(rect2A, OutfitterTextures.Info))
-            {
-                Find.WindowStack.Add(new Dialog_InfoCard(thing));
-            }
-
-            if (this.CanControl)
-            {
-                Rect rect2 = new Rect(rect.width - 24f, y, 24f, 24f);
-                TooltipHandler.TipRegion(rect2, "DropThing".Translate());
-                if (Widgets.ButtonImage(rect2, OutfitterTextures.Drop))
-                {
-                    SoundDefOf.TickHigh.PlayOneShotOnCamera();
-                    this.InterfaceDrop(thing);
-                }
-
-                rect.width -= 24f;
-            }
-
-            if (thing.def.DrawMatSingle != null && thing.def.DrawMatSingle.mainTexture != null)
-            {
-                Widgets.ThingIcon(new Rect(4f, y, 28f, 28f), thing);
-            }
-
-            Text.Anchor  = TextAnchor.MiddleLeft;
-            GUI.color    = ThingLabelColor;
-            Rect   rect3 = new Rect(ThingLeftX, y, width - ThingLeftX, 28f);
-            string text  = thing.LabelCap;
-            if (thing is Apparel && this.SelPawn.outfits != null
-                                 && this.SelPawn.outfits.forcedHandler.IsForced((Apparel) thing))
-            {
-                text = text + ", " + "ApparelForcedLower".Translate();
-            }
-
-            Widgets.Label(rect3, text);
-            y += ThingRowHeight;
-        }
-
         private void InterfaceDrop([NotNull] Thing t)
         {
             ThingWithComps thingWithComps = t as ThingWithComps;
-            Apparel        apparel        = t as Apparel;
-            if (apparel != null)
+            if (t is Apparel apparel)
             {
                 Pawn selPawnForGear = this.SelPawn;
-                if (selPawnForGear.jobs.IsCurrentJobPlayerInterruptible())
+                if (!selPawnForGear.jobs.IsCurrentJobPlayerInterruptible())
                 {
-                    Job job = new Job(JobDefOf.RemoveApparel, apparel) {playerForced = true};
-                    selPawnForGear.jobs.TryTakeOrderedJob(job);
+                    return;
                 }
+
+                Job job = new Job(JobDefOf.RemoveApparel, apparel) { playerForced = true };
+                selPawnForGear.jobs.TryTakeOrderedJob(job);
             }
             else if (thingWithComps != null
                   && this.SelPawn.equipment.AllEquipmentListForReading.Contains(thingWithComps))
             {
                 this.SelPawn.equipment.TryDropEquipment(
                                                    thingWithComps,
-                                                   out ThingWithComps thingWithComps2, this.SelPawn.Position);
+                                                   out ThingWithComps _, this.SelPawn.Position);
             }
             else if (!t.def.destroyOnDrop)
             {
-                this.SelPawn.inventory.innerContainer.TryDrop(t, ThingPlaceMode.Near, out Thing thing);
+                this.SelPawn.inventory.innerContainer.TryDrop(t, ThingPlaceMode.Near, out Thing _);
             }
         }
 
         private void InterfaceDropHaul(Thing t)
         {
             ThingWithComps thingWithComps = t as ThingWithComps;
-            Apparel        apparel        = t as Apparel;
-            if (apparel != null)
+            if (t is Apparel apparel)
             {
                 Pawn selPawnForGear = this.SelPawn;
                 if (selPawnForGear.jobs.IsCurrentJobPlayerInterruptible())
                 {
-                    Job job                                                    =
-                        new Job(JobDefOf.RemoveApparel, apparel) {playerForced = true, haulDroppedApparel = true};
+                    Job job =
+                        new Job(JobDefOf.RemoveApparel, apparel) { playerForced = true, haulDroppedApparel = true };
                     selPawnForGear.jobs.TryTakeOrderedJob(job);
                 }
             }

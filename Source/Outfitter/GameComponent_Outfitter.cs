@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using JetBrains.Annotations;
+using Outfitter.Window;
 using RimWorld;
 using Verse;
 
