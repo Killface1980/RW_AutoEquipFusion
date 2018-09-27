@@ -130,7 +130,7 @@ namespace Outfitter
                 }
 
                 // Not in store
-                if (apparel.Map.slotGroupManager.SlotGroupAt(apparel.Position) == null)
+                if (apparel.Map.haulDestinationManager.SlotGroupAt(apparel.Position) == null)
                 {
                     continue;
                 }
@@ -193,7 +193,7 @@ namespace Outfitter
             if (DebugViewSettings.debugApparelOptimize)
             {
                 _debugSb.AppendLine("BEST: " + thing);
-                Log.Message(_debugSb.ToString());
+                //Log.Message(_debugSb.ToString());
                 _debugSb = null;
             }
 

@@ -257,7 +257,7 @@ namespace Outfitter
                 {
                     string bp    = string.Empty;
                     string layer = string.Empty;
-                    foreach (ApparelLayer apparelLayer in current2.def.apparel.layers)
+                    foreach (ApparelLayerDef apparelLayer in current2.def.apparel.layers)
                     {
                         foreach (BodyPartGroupDef bodyPartGroupDef in current2.def.apparel.bodyPartGroups)
                         {
@@ -647,12 +647,12 @@ namespace Outfitter
 
                         Action dropApparel = delegate
                                              {
-                                                 SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                                                 SoundDefOf.Tick_High.PlayOneShotOnCamera();
                                                  this.InterfaceDrop(apparel);
                                              };
                         Action dropApparelHaul = delegate
                                                  {
-                                                     SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                                                     SoundDefOf.Tick_High.PlayOneShotOnCamera();
                                                      this.InterfaceDropHaul(apparel);
                                                  };
                         floatOptionList.Add(new FloatMenuOption("DropThing".Translate(),     dropApparel));
@@ -733,7 +733,7 @@ namespace Outfitter
                 TooltipHandler.TipRegion(rect2, "DropThing".Translate());
                 if (Widgets.ButtonImage(rect2, OutfitterTextures.Drop))
                 {
-                    SoundDefOf.TickHigh.PlayOneShotOnCamera();
+                    SoundDefOf.Tick_High.PlayOneShotOnCamera();
                     this.InterfaceDrop(thing);
                 }
 

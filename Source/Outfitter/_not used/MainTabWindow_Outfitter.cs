@@ -16,8 +16,7 @@ namespace Outfitter
             List<BodyPartGroupDef> groups = BodyDefOf.Human.AllParts.SelectMany(part => part.groups).Distinct().ToList();
 
             // log it, because we can!
-            Log.Message(string.Join("\n", groups.Select(group => group.LabelCap).ToArray()));
-
+            Log.Message(string.Join("\n", groups.Select(group => group.LabelCap).ToArray
             // foreach ( Pawn pawn in Find.ListerPawns.FreeColonistsSpawned )
             // {
             // Log.Message( pawn.NameStringShort + " stat priorities:\n" +

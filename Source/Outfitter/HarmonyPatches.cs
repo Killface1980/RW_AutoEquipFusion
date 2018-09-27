@@ -71,8 +71,8 @@ internal static class HarmonyPatches
         // typeof(ITab_Bills_Patch),
         // nameof(ITab_Bills_Patch.FillTab_Prefix)),
         // null);
-        Log.Message(
-            "Outfitter successfully completed " + harmony.GetPatchedMethods().Count() + " patches with harmony.");
+        //Log.Message(
+        //    "Outfitter successfully completed " + harmony.GetPatchedMethods().Count() + " patches with harmony.");
     }
 
     private static void ResolveApparelGraphics_Postfix(PawnGraphicSet __instance)

@@ -39,11 +39,11 @@ namespace Outfitter
                     //    if (!head.groups.Contains(BodyPartGroupDefOf.Eyes))
                     {
                         //     head.groups.Add(BodyPartGroupDefOf.Eyes);
-                        BodyPartRecord leftEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.LeftEye);
-                        BodyPartRecord rightEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.RightEye);
+                        //BodyPartRecord leftEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.LeftEye);
+                        //BodyPartRecord rightEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.RightEye);
                         BodyPartRecord jaw = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.Jaw);
-                        leftEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
-                        rightEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
+                        //leftEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
+                        //rightEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
                         jaw?.groups.Remove(BodyPartGroupDefOf.FullHead);
                         Log.Message("Outfitter patched Human eyes and jaw.");
                         break;

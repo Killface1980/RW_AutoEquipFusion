@@ -3,4 +3,7 @@
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup>
+    <ReferencePath>E:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin64_Data\Managed\;E:\SteamLibrary\steamapps\common\RimWorld\RimWorldWin_Data\</ReferencePath>
+  </PropertyGroup>
 </Project>

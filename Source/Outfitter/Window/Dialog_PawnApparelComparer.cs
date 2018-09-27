@@ -20,7 +20,7 @@ namespace Outfitter.Window
         public Dialog_PawnApparelComparer(Pawn p, Apparel apparel)
         {
             this.doCloseX = true;
-            this.closeOnEscapeKey = true;
+            //this.closeOnEscapeKey = true;
             this.doCloseButton = true;
 
             this._pawn = p;
@@ -41,7 +41,7 @@ namespace Outfitter.Window
             if (this._dict == null || Find.TickManager.TicksGame % 60 == 0 || GUI.changed)
             {
                 List<Apparel> ap = new List<Apparel>(this._pawn.Map.listerThings.ThingsInGroup(ThingRequestGroup.Apparel).OfType<Apparel>().Where(
-                        x => x.Map.slotGroupManager.SlotGroupAt(x.Position) != null));
+                        x => x.Map.haulDestinationManager.SlotGroupAt(x.Position) != null));
 
                 foreach (Pawn otherPawn in PawnsFinder.AllMaps_FreeColonists.Where(x => x.Map == this._pawn.Map))
                 {
@@ -201,7 +201,7 @@ namespace Outfitter.Window
                     Find.MainTabsRoot.EscapeCurrentTab();
                     if (isCurrentlyWorn)
                     {
-                        Find.CameraDriver.JumpToVisibleMapLoc(equippedPawn.PositionHeld);
+                        //FIXME: Find.CameraDriver.JumpToVisibleMapLoc(equippedPawn.PositionHeld);
                         Find.Selector.ClearSelection();
                         if (equippedPawn.Spawned)
                         {
@@ -210,7 +210,7 @@ namespace Outfitter.Window
                     }
                     else
                     {
-                        Find.CameraDriver.JumpToVisibleMapLoc(apparelThing.PositionHeld);
+                        //FIXME: Find.CameraDriver.JumpToVisibleMapLoc(apparelThing.PositionHeld);
                         Find.Selector.ClearSelection();
                         if (apparelThing.Spawned)
                         {
@@ -251,7 +251,7 @@ namespace Outfitter.Window
                 {
                     this.Close();
                     Find.MainTabsRoot.EscapeCurrentTab();
-                    Find.CameraDriver.JumpToVisibleMapLoc(equippedPawn.PositionHeld);
+                    Find.CameraDriver.JumpToCurrentMapLoc(equippedPawn.PositionHeld);
                     Find.Selector.ClearSelection();
                     if (equippedPawn.Spawned)
                     {

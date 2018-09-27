@@ -582,7 +582,7 @@ namespace Outfitter
             log += "\nScoreOffsetMin: " + temperatureScoreOffset.min + " - ScoreOffsetMax: "
                    + temperatureScoreOffset.max + " *= " + (temperatureScoreOffset.min * temperatureScoreOffset.max);
 
-            // Log.Message(log);
+            Log.Message(log);
             return temperatureScoreOffset.min * temperatureScoreOffset.max;
 
             // return 1 + (temperatureScoreOffset.min + temperatureScoreOffset.max) / 15;

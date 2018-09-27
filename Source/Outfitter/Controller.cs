@@ -50,32 +50,32 @@ namespace Outfitter
                     //    if (!head.groups.Contains(BodyPartGroupDefOf.Eyes))
                     {
                         //     head.groups.Add(BodyPartGroupDefOf.Eyes);
-                        BodyPartRecord leftEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.LeftEye);
-                        BodyPartRecord rightEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.RightEye);
+                        //BodyPartRecord leftEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.LeftEye);
+                        //BodyPartRecord rightEye = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.RightEye);
                         BodyPartRecord jaw = head.parts.FirstOrDefault(x => x.def == BodyPartDefOf.Jaw);
 
                         if (Settings.UseEyes)
                         {
-                            leftEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
-                            rightEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
+                            //leftEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
+                            //rightEye?.groups.Remove(BodyPartGroupDefOf.FullHead);
                             jaw?.groups.Remove(BodyPartGroupDefOf.FullHead);
-                            Log.Message("Outfitter removed FullHead from Human eyes.");
+                            //Log.Message("Outfitter removed FullHead from Human eyes.");
                         }
                         else
                         {
-                            if (leftEye != null && !leftEye.groups.Contains(BodyPartGroupDefOf.FullHead))
+                            /*if (leftEye != null && !leftEye.groups.Contains(BodyPartGroupDefOf.FullHead))
                             {
                                 leftEye?.groups.Add(BodyPartGroupDefOf.FullHead);
                             }
                             if (rightEye != null && !rightEye.groups.Contains(BodyPartGroupDefOf.FullHead))
                             {
                                 rightEye?.groups.Add(BodyPartGroupDefOf.FullHead);
-                            }
+                            }*/
                             if (jaw != null && !jaw.groups.Contains(BodyPartGroupDefOf.FullHead))
                             {
                                 jaw?.groups.Add(BodyPartGroupDefOf.FullHead);
                             }
-                            Log.Message("Outfitter re-added FullHead to Human eyes.");
+                            //Log.Message("Outfitter re-added FullHead to Human eyes.");
                         }
                         break;
                     }

@@ -306,7 +306,7 @@ namespace Outfitter
                         {
                             if (activeCondition is GameCondition_PsychicEmanation
                              && (activeCondition as GameCondition_PsychicEmanation).gender == pawn.gender
-                             && activeCondition.def.droneLevel                             > PsychicDroneLevel.None)
+                             && activeCondition.def.defaultDroneLevel                             > PsychicDroneLevel.None)
                             {
                                 switch (pawn.story.traits.DegreeOfTrait(TraitDefOf.PsychicSensitivity))
                                 {
@@ -603,8 +603,7 @@ namespace Outfitter
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Blunt,              2.5f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Sharp,              2.5f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Heat,               1.5f);
-            yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Electric,           1.5f);
-            yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracy,               0f);
+            yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracyPawn,               0f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.AimingDelayFactor,              -3f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.RangedWeapon_Cooldown,          0f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyShort,                  0f);
@@ -617,7 +616,7 @@ namespace Outfitter
         {
             yield return new KeyValuePair<StatDef, float>(StatDefOf.MoveSpeed,                      1f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.MeleeDodgeChance,               0.5f);
-            yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracy,               3f);
+            yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracyPawn,               3f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.AimingDelayFactor,              -3f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.RangedWeapon_Cooldown,          -3f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyTouch,                  0f);
@@ -631,7 +630,6 @@ namespace Outfitter
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Blunt,              2.5f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Sharp,              2.5f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Heat,               1.5f);
-            yield return new KeyValuePair<StatDef, float>(StatDefOf.ArmorRating_Electric,           1.5f);
             yield return new KeyValuePair<StatDef, float>(StatDefOf.PainShockThreshold,             PosMax());
         }
 
@@ -661,7 +659,7 @@ namespace Outfitter
             if (pawnSave.MainJob == MainJob.Soldier00RangedCombat)
             {
                 // mainJob = true;
-                yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracy,      PosMax(mainJob));
+                yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracyPawn,      PosMax(mainJob));
                 yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyShort,         PosMed(mainJob));
                 yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyMedium,        PosMed(mainJob));
                 yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyLong,          PosMed(mainJob));
@@ -705,7 +703,7 @@ namespace Outfitter
                         mainJob = true;
                     }
 
-                    yield return new KeyValuePair<StatDef, float>(StatDefOf.RecruitPrisonerChance, PosMax(mainJob));
+                    yield return new KeyValuePair<StatDef, float>(StatDefOf.NegotiationAbility, PosMax(mainJob));
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.SocialImpact,          PosMed(mainJob));
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.TradePriceImprovement, PosMax(mainJob));
                     yield break;
@@ -779,7 +777,7 @@ namespace Outfitter
                         mainJob = true;
                     }
 
-                    yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracy,      PosMax(mainJob));
+                    yield return new KeyValuePair<StatDef, float>(StatDefOf.ShootingAccuracyPawn,      PosMax(mainJob));
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.MoveSpeed,             PosMed(mainJob));
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyShort,         PosMed(mainJob));
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.AccuracyMedium,        PosMed(mainJob));
@@ -961,7 +959,7 @@ namespace Outfitter
                 // Hospitality
                 case Other.HospitalityDiplomat:
                     yield return new KeyValuePair<StatDef, float>(StatDefOf.SocialImpact,   PosMed(mainJob));
-                    yield return new KeyValuePair<StatDef, float>(StatDefOf.DiplomacyPower, PosMax(mainJob));
+                    yield return new KeyValuePair<StatDef, float>(StatDefOf.NegotiationAbility, PosMax(mainJob));
                     yield break;
 
                 // Else

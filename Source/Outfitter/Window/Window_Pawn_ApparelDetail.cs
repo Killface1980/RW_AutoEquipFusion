@@ -52,7 +52,8 @@ namespace Outfitter
         public Window_Pawn_ApparelDetail(Pawn pawn, Apparel apparel)
         {
             this.doCloseX = true;
-            this.closeOnEscapeKey = true;
+            this.closeOnClickedOutside = true;
+            //this.closeOnEscapeKey = true;
             this.doCloseButton = true;
             this.preventCameraMotion = false;
 
