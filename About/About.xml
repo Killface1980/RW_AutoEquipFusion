@@ -3,7 +3,7 @@
 	<name>Outfitter 0.18.0</name>
 	<author>Killface</author>
 	<url></url>
-	<targetVersion>0.18.0</targetVersion>
+	<targetVersion>1.0.2957</targetVersion>
 	<description>
     Allows pawns to factor in all kinds of gear stat offsets other than just armor.
     - Defaults to sensible priorities based on work types assigned and map seasonal temperatures.

@@ -112,7 +112,7 @@ namespace Outfitter.TabPatch
                         {
                             RecipeDef recipe = recipesWithPart[i];
 
-                            ThingCountClass recipeProduct = recipe.products.FirstOrDefault();
+                            ThingDefCountClass recipeProduct = recipe.products.FirstOrDefault();
 
                             List<Pawn> colonistsWithThing = new List<Pawn>();
                             if (recipeProduct != null && recipeProduct.thingDef.IsApparel)
@@ -156,7 +156,7 @@ namespace Outfitter.TabPatch
                                     tooltip += "\n";
                                     for (int index = 0; index < thingDef.apparel.layers.Count; index++)
                                     {
-                                        ApparelLayer layer = thingDef.apparel.layers[index];
+                                        ApparelLayerDef layer = thingDef.apparel.layers[index];
                                         if (index > 0)
                                         {
                                             tooltip += ", ";

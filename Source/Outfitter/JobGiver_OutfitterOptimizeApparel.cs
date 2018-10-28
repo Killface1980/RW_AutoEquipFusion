@@ -129,12 +129,6 @@ namespace Outfitter
                     continue;
                 }
 
-                // Not in store
-                if (apparel.Map.slotGroupManager.SlotGroupAt(apparel.Position) == null)
-                {
-                    continue;
-                }
-
                 // Forbidden
                 if (apparel.IsForbidden(pawn))
                 {
